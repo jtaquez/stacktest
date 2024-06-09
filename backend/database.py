@@ -3,7 +3,7 @@ conn = sqlite3.connect('employees.db')
 cursor = conn.cursor()
 
 
-create_table_query = '''
+create_employee_table = '''
 CREATE TABLE IF NOT EXISTS employees (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -12,7 +12,9 @@ CREATE TABLE IF NOT EXISTS employees (
 );
 '''
 
-create_skills_table_query = '''
+cursor.execute(create_employee_table)
+
+create_skills_table = '''
 CREATE TABLE IF NOT EXISTS skills (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     employee_id INTEGER,
@@ -22,10 +24,10 @@ CREATE TABLE IF NOT EXISTS skills (
 '''
 
 
-cursor.execute(create_skills_table_query)
-cursor.execute(create_table_query)
-conn.commit()
-conn.close()
+
+cursor.execute(create_skills_table)
+
+
 
 def insert_skill(employee_id, skill):
     conn = sqlite3.connect('employees.db')
@@ -36,7 +38,7 @@ def insert_skill(employee_id, skill):
     '''
     cursor.execute(insert_query, (employee_id, skill))
     conn.commit()
-    conn.close()
+    
 
 def insert_employee(name, position, avatar):
     conn = sqlite3.connect('employees.db')
@@ -47,11 +49,14 @@ def insert_employee(name, position, avatar):
     '''
     cursor.execute(insert_query, (name, position, avatar))
     conn.commit()
-    conn.close()
+    
 
-insert_employee("John Doe", "Software Engineer", "path/to/avatar.jpg")
+insert_employee("John Doe", "Software Engineer", "/avatarfolder/avatar.png")
 insert_skill(1, "Python")
 insert_skill(1, "SQL")
 insert_skill(1, "JavaScript")
 insert_skill(1, "React")
 insert_skill(1, "Next.js")
+
+
+conn.close()
