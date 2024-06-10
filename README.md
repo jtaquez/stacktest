@@ -28,7 +28,9 @@ Alternatively if you enter this link: https://github.com/jtaquez/stacktest , you
 
 
 4.Build the Docker images using the following command:
+
 docker-compose build
+
 This command will build the Docker images specified in the docker-compose.yml file.
 
 Once the build process is complete, start the containers using the following command:
