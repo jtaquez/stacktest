@@ -13,11 +13,14 @@ RUN npm install
 # Copy the frontend code to the working directory
 COPY . .
 
-# Build the Next.js application
+# Build the Node application
 RUN npm run build
+
+#Copy the NextJS files 
+COPY .next ./.next 
 
 # Expose the port on which the frontend server will run
 EXPOSE 3000
 
-# Run the command to start the frontend server
-CMD ["npm", "start"]
+# Run the command to start the frontend server, nextjs runs via npm run dev
+CMD ["npm", "run", "dev"]

@@ -7,5 +7,6 @@ export default   {
     reactStrictMode: true,
     serverRuntimeConfig: {
       apiUrl: 'http://localhost:8000',
+    output:"standalone",
     },
   };
